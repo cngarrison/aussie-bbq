@@ -1,0 +1,11 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'firewall', '~> 2.5.2'
+cookbook 'java', '~> 1.42.0'
+cookbook 'elasticsearch', '~> 2.3.2'
+cookbook 'kibana_lwrp', '~> 3.0.2'
+cookbook 'logstash', '~> 0.12.0'
+cookbook 'nginx', '~> 2.7.6'
+

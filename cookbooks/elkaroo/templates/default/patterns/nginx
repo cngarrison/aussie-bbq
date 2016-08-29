@@ -1,0 +1,4 @@
+NGUSERNAME [a-zA-Z\.\@\-\+_%]+
+NGUSER %{NGUSERNAME}
+NGINXACCESS .*? nginx: %{IPORHOST:clientip} \[%{HTTPDATE:timestamp}\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} %{NUMBER:request_time:float} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{WORD:is_memcached:int}
+NGINX %{IPORHOST:clientip} \[%{HTTPDATE:timestamp}\]  "(?:%{WORD:verb} %{URIPATHPARAM:request}(?: HTTP/%{NUMBER:httpversion})?|-)" %{NUMBER:response} (?:%{NUMBER:bytes}|-) "(?:%{URI:referrer}|-)" %{QS:agent} %{NUMBER:request_time} %{NUMBER:upstream_response_time} %{NUMBER:gzip_ratio} (?:%{WORD:cache_hit}|-)%{GREEDYDATA}

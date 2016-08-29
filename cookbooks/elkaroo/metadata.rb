@@ -1,0 +1,15 @@
+name 'elkaroo'
+maintainer 'The Authors'
+maintainer_email 'charlie@garrison.com.au'
+license 'all_rights'
+description 'Installs/Configures elkaroo'
+long_description 'Installs/Configures elkaroo'
+version '0.1.0'
+
+depends 'firewall', '~> 2.5.2'
+depends 'java', '~> 1.42.0'
+depends 'elasticsearch', '~> 2.3.2'
+depends 'kibana_lwrp', '~> 3.0.2'
+depends 'logstash', '~> 0.12.0'
+depends 'nginx', '~> 2.7.6'
+

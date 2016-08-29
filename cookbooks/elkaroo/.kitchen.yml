@@ -1,0 +1,32 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: userid
+  region: ap-southeast-2
+  availability_zone: c
+  security_group_ids: sg-ce145eaa
+  subnet_id: subnet-212e3967
+  associate_public_ip: true
+  interface: dns
+  instance_type: t2.medium
+
+transport:
+  ssh_key: ~/.ssh/userid.pem
+  connection_timeout: 10
+  connection_retries: 5
+  username: ubuntu
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[elkaroo::default]
+    attributes:

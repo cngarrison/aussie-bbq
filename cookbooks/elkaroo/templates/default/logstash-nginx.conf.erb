@@ -1,0 +1,34 @@
+input {
+  file {
+	  path => "<%= node['logstash']['server']['input_log_path'] %>"
+	  start_position => beginning
+	  type => "nginx"
+  }
+}
+
+filter {
+	grok {
+		match => { message => '%{IPORHOST:clientip} \[%{HTTPDATE:request_timestamp}\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} %{NUMBER:request_time:float} (?:%{NUMBER:bytes:int}|-) %{QS:referrer} %{QS:agent} \"%{NUMBER:is_memcached:int}\"' }
+	}
+	urldecode {
+		field => "request"
+	}
+	date {
+		match => [ "request_timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
+	}
+}
+
+output {
+  <% if node['logstash']['server']['debug'] -%>
+  stdout { 
+    debug => true
+    codec => rubydebug
+  }
+  <% end -%>
+  elasticsearch { 
+	  host => "127.0.0.1"
+	  port => 9200
+	  protocol => http
+	  cluster => "elasticsearch"
+  }
+}

@@ -12,13 +12,13 @@
 4. `kitchen converge`
 5. `aws ec2 describe-instances | grep PublicDnsName` (get Public DNS Name for new EC2 instance)
 6. `scp -i ~/.ssh/<user_key_id>.pem path/to/ngx-debug.log ubuntu@ec2.public.dns.name:` (copy log file to EC2 instance)
-7. Connect to Kibana using _http://ec2.public.dns.name_
+7. Connect to Kibana using _http://ec2.public.dns.name_ and login with username `admin` and password you set in attributes
 8. Add `logstash-*` index, and click `Discover`
 
 
 This recipe has only been tested with `kitchen` but should work equally as well deployed with `knife` to a chef server. 
 
-Any `logstash` input plugin can be used. Simply edit the `templates/default/logstash-nginx.conf.erb` template with the preferred input config.
+Any logstash `input` plugin can be used. Simply edit the `templates/default/logstash-nginx.conf.erb` template and add the preferred `input` config.
 
 SSL cert can be added to nginx by editing the `templates/default/kibana-nginx-file.conf.erb` file.
 

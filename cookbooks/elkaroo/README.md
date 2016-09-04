@@ -24,7 +24,7 @@
 8. Add `logstash-*` index, and click `Discover` to begin reviewing log data
 
 
-This recipe has only been tested with `kitchen` but should work equally as well deployed with `knife` to a chef server. 
+This recipe has only been tested with `kitchen` but should work equally as well deployed with `knife` to a hosted or open-source chef server. 
 
 Any logstash `input` plugin can be used. Simply edit the `templates/default/logstash-nginx.conf.erb` template and add the 
 preferred `input` config, eg. using a logstash agent.
@@ -73,6 +73,15 @@ Custom visualations can be added to Kibana using template config files. Specific
 ### Recipes
 
 - elkaroo::default
+
+### TODO
+
+- Update logstash cookbook to use v2
+- Add custom visualizations
+- Enable various log input methods via config _(already exists in logstash cookbook but had syntax errors from 
+  config, need something easier to write)_
+- Split attributes into separate files for each elk component
+- Test with `knife` to ensure compatibility with hosted or opensource `chef-server` _(currently using `chef-zero` via `kitchen`)_
 
 ### License and Maintainer
 
